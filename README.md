@@ -52,7 +52,7 @@
 
 - Implemented global error handling middleware with structured logging.
 
-- Integrated `ILogge` for clean, production-ready logging instead of `Console.WriteLine`.
+- Integrated `ILogger` for clean, production-ready logging instead of `Console.WriteLine`.
 
 - Recommended adding proper validation for new fields like Email to prevent malformed data.
 
