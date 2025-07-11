@@ -1,0 +1,85 @@
+// Get a user that doesn't exist
+
+GET http://localhost:5153/users/1
+Authorization: Bearer secret-token-123              
+Accept: application/json
+
+### Test Protected Endpoint with Missing or Invalid Token
+GET http://localhost:5153/users/1
+Authorization: Bearer wrong-token
+Accept: application/json
+
+###
+// Create a user with valid data
+POST http://localhost:5153/users/
+Authorization: Bearer secret-token-123
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Alice Johnson",
+  "email": "alice@example.com"
+}
+
+###
+// Create a user with missing name and invalid email
+POST http://localhost:5153/users/
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "vasilica",
+  "email": "valid@email.com"
+}
+
+###
+// Create a user with duplicate ID
+POST http://localhost:5153/users/
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Duplicate User",
+  "email": "duplicate@example.com"
+}
+
+###
+// Update an existing user with valid data
+PUT http://localhost:5153/users/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Alice Updated",
+  "email": "alice.updated@example.com"
+}
+
+###
+// Update a user with mismatched ID in URL and payload
+PUT http://localhost:5153/users/1
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "Mismatch",
+  "email": "mismatch@example.com"
+}
+
+###
+// Update a non-existent user
+PUT http://localhost:5153/users/999
+Content-Type: application/json
+
+{
+  "id": 999,
+  "name": "Ghost User",
+  "email": "ghost@example.com"
+}
+
+###
+// Delete an existing user
+DELETE http://localhost:5153/users/1
+
+###
+// Delete a non-existent user
+DELETE http://localhost:5153/users/999
